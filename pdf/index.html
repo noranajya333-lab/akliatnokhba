@@ -1,0 +1,497 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>مكتبة PDF | عقلية النخبة</title>
+
+    <meta name="description" content="مكتبة PDF في موقع عقلية النخبة">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Tahoma, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+            line-height: 1.8;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #ddd;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 15px;
+            background: #f5c542;
+            color: #111827;
+            padding: 10px 20px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title h2 {
+            font-size: 32px;
+            color: #111827;
+        }
+
+        .title p {
+            color: #666;
+        }
+
+        /* البحث */
+        .search {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .search input {
+            width: 90%;
+            max-width: 550px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        /* التصنيفات */
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 35px;
+        }
+
+        .category {
+            border: none;
+            background: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .category:hover {
+            background: #f5c542;
+        }
+
+        /* ملفات PDF */
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .pdf-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .pdf-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pdf-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .pdf-card h3 {
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .pdf-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .read,
+        .download {
+            text-decoration: none;
+            padding: 9px 15px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .read {
+            background: #111827;
+            color: white;
+        }
+
+        .download {
+            background: #f5c542;
+            color: #111827;
+        }
+
+        footer {
+            margin-top: 60px;
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer a {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 27px;
+            }
+
+            .title h2 {
+                font-size: 26px;
+            }
+
+            .pdf-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>📚 مكتبة PDF</h1>
+
+    <p>
+        مجموعة من الملفات المفيدة من عقلية النخبة
+    </p>
+
+    <a href="../index.html" class="back">
+        ← العودة إلى الرئيسية
+    </a>
+
+</header>
+
+
+<main class="container">
+
+    <div class="title">
+
+        <h2>📄 مكتبة عقلية النخبة</h2>
+
+        <p>
+            اكتشف الملفات والكتب والملخصات المتوفرة لدينا
+        </p>
+
+    </div>
+
+
+    <!-- البحث -->
+
+    <div class="search">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="🔎 ابحث عن ملف PDF..."
+            onkeyup="searchPDF()"
+        >
+
+    </div>
+
+
+    <!-- التصنيفات -->
+
+    <div class="categories">
+
+        <button class="category">
+            الكل
+        </button>
+
+        <button class="category">
+            تطوير الذات
+        </button>
+
+        <button class="category">
+            النجاح
+        </button>
+
+        <button class="category">
+            الدراسة
+        </button>
+
+        <button class="category">
+            المال والأعمال
+        </button>
+
+        <button class="category">
+            الكتب
+        </button>
+
+    </div>
+
+
+    <!-- ملفات PDF -->
+
+    <div class="pdf-grid" id="pdfList">
+
+
+        <!-- PDF 1 -->
+
+        <div class="pdf-card">
+
+            <div class="pdf-icon">
+                📕
+            </div>
+
+            <h3>
+                دليل تطوير الذات
+            </h3>
+
+            <p>
+                ملف PDF حول تطوير العادات والمهارات الشخصية.
+            </p>
+
+            <div class="buttons">
+
+                <!-- بدلي هذا الرابط باسم ملف PDF الحقيقي -->
+
+                <a
+                    href="dawir-tatwir-dat.pdf"
+                    target="_blank"
+                    class="read">
+                    📖 قراءة
+                </a>
+
+                <a
+                    href="dawir-tatwir-dat.pdf"
+                    download
+                    class="download">
+                    📥 تحميل
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- PDF 2 -->
+
+        <div class="pdf-card">
+
+            <div class="pdf-icon">
+                📘
+            </div>
+
+            <h3>
+                دليل النجاح
+            </h3>
+
+            <p>
+                أفكار تساعدك على بناء عقلية قوية وتحقيق أهدافك.
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    href="dalil-najah.pdf"
+                    target="_blank"
+                    class="read">
+                    📖 قراءة
+                </a>
+
+                <a
+                    href="dalil-najah.pdf"
+                    download
+                    class="download">
+                    📥 تحميل
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- PDF 3 -->
+
+        <div class="pdf-card">
+
+            <div class="pdf-icon">
+                📗
+            </div>
+
+            <h3>
+                دليل الدراسة
+            </h3>
+
+            <p>
+                طرق وأفكار تساعدك على تنظيم الدراسة والتعلم.
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    href="dalil-dirassa.pdf"
+                    target="_blank"
+                    class="read">
+                    📖 قراءة
+                </a>
+
+                <a
+                    href="dalil-dirassa.pdf"
+                    download
+                    class="download">
+                    📥 تحميل
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- PDF 4 -->
+
+        <div class="pdf-card">
+
+            <div class="pdf-icon">
+                📙
+            </div>
+
+            <h3>
+                أفكار في المال والأعمال
+            </h3>
+
+            <p>
+                ملف يحتوي على أفكار ومعلومات حول المال والمشاريع.
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    href="mal-wa-aamal.pdf"
+                    target="_blank"
+                    class="read">
+                    📖 قراءة
+                </a>
+
+                <a
+                    href="mal-wa-aamal.pdf"
+                    download
+                    class="download">
+                    📥 تحميل
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <h2>🧠 عقلية النخبة</h2>
+
+    <p>
+        طوّر عقلك، طوّر حياتك.
+    </p>
+
+    <br>
+
+    <a href="../index.html">
+        الرئيسية
+    </a>
+
+    <p>
+        © 2026 عقلية النخبة - جميع الحقوق محفوظة
+    </p>
+
+</footer>
+
+
+<script>
+
+function searchPDF() {
+
+    let input =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    let cards =
+        document
+        .getElementsByClassName("pdf-card");
+
+    for (let i = 0; i < cards.length; i++) {
+
+        let title =
+            cards[i]
+            .innerText
+            .toLowerCase();
+
+        if (title.includes(input)) {
+
+            cards[i].style.display = "";
+
+        } else {
+
+            cards[i].style.display = "none";
+
+        }
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+```
