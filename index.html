@@ -1,94 +1,625 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتبتي</title>
+
+    <title>عقلية النخبة | طوّر عقلك، طوّر حياتك</title>
+
+    <meta name="description" content="عقلية النخبة - موقع لتطوير الذات، النجاح، المال والأعمال، الدراسة، الكتب وملفات PDF.">
+    <meta name="keywords" content="عقلية النخبة, تطوير الذات, النجاح, كتب, PDF, المال, الدراسة, الذكاء الاصطناعي">
 
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            font-family: Arial, Tahoma, sans-serif;
+            background: #f5f6f8;
             color: #222;
+            line-height: 1.8;
         }
 
+        /* الشريط العلوي */
         header {
-            background: #222;
+            background: #111827;
             color: white;
-            text-align: center;
-            padding: 40px 20px;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 35px;
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            white-space: nowrap;
         }
 
-        header p {
-            font-size: 18px;
+        nav {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        main {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-
-        .button {
-            display: inline-block;
-            background: #222;
+        nav a {
             color: white;
-            padding: 12px 25px;
             text-decoration: none;
-            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.3s;
         }
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            background: #222;
+        nav a:hover {
+            color: #f5c542;
+        }
+
+        /* الواجهة الرئيسية */
+        .hero {
+            background: linear-gradient(135deg, #111827, #263449);
             color: white;
-            margin-top: 40px;
+            text-align: center;
+            padding: 90px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            color: #e5e7eb;
+            margin-bottom: 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            background: #f5c542;
+            color: #111827;
+            padding: 13px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero-button:hover {
+            background: #ffd966;
+        }
+
+        /* الأقسام */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #111827;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 20px;
+        }
+
+        .category {
+            background: white;
+            padding: 28px 20px;
+            text-align: center;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            transition: 0.3s;
+        }
+
+        .category:hover {
+            transform: translateY(-6px);
+        }
+
+        .category .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .category h3 {
+            margin-bottom: 8px;
+        }
+
+        .category p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .category a {
+            display: inline-block;
+            margin-top: 12px;
+            text-decoration: none;
+            color: #111827;
+            font-weight: bold;
+        }
+
+        /* المقالات */
+        .articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .article span {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .article h3 {
+            margin: 12px 0;
+        }
+
+        .article p {
+            color: #555;
+            font-size: 15px;
+        }
+
+        .article a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #111827;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* PDF */
+        .pdf-section {
+            background: #111827;
+            color: white;
+            padding: 55px 20px;
+            margin-top: 60px;
+        }
+
+        .pdf-section .section-title {
+            color: white;
+        }
+
+        .pdf-boxes {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .pdf-card {
+            background: white;
+            color: #222;
+            padding: 25px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .pdf-card .pdf-icon {
+            font-size: 45px;
+        }
+
+        .pdf-card h3 {
+            margin: 10px 0;
+        }
+
+        .pdf-button {
+            display: inline-block;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            margin-top: 10px;
+        }
+
+        /* الأكثر قراءة */
+        .popular {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .popular-card {
+            background: white;
+            padding: 22px;
+            border-right: 5px solid #f5c542;
+            border-radius: 10px;
+        }
+
+        /* النشرة البريدية */
+        .newsletter {
+            background: white;
+            text-align: center;
+            padding: 45px 20px;
+            margin-top: 60px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .newsletter input {
+            width: 60%;
+            max-width: 400px;
+            padding: 13px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+        }
+
+        .newsletter button {
+            padding: 13px 22px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 7px;
+            background: #111827;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* الفوتر */
+        footer {
+            background: #111827;
+            color: white;
+            margin-top: 60px;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ddd;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        footer p {
+            margin-top: 15px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* الهاتف */
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+            }
+
+            nav {
+                gap: 10px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .newsletter input {
+                width: 100%;
+            }
+
+            .newsletter button {
+                margin-top: 10px;
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
 
+<!-- الشريط العلوي -->
 <header>
-    <h1>📚 مكتبتي</h1>
-    <p>مقالات وملفات PDF مفيدة</p>
+
+    <div class="logo">
+        🧠 عقلية النخبة
+    </div>
+
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="#categories">الأقسام</a>
+        <a href="#articles">المقالات</a>
+        <a href="#pdf">PDF</a>
+        <a href="#popular">الأكثر قراءة</a>
+        <a href="#contact">تواصل معنا</a>
+    </nav>
+
 </header>
 
-<main>
 
-    <div class="card">
-        <h2>📄 ملفات PDF</h2>
-        <p>قريباً غادي نضيفو هنا مكتبة PDF متنوعة ومفيدة.</p>
-        <a href="#" class="button">اكتشف الملفات</a>
+<!-- الواجهة الرئيسية -->
+<section class="hero">
+
+    <h1>عقلية النخبة</h1>
+
+    <p>
+        طوّر عقلك، طوّر حياتك، وابنِ مستقبلك.
+    </p>
+
+    <a href="#categories" class="hero-button">
+        اكتشف الموقع
+    </a>
+
+</section>
+
+
+<!-- الأقسام -->
+<section class="container" id="categories">
+
+    <h2 class="section-title">
+        📚 أقسام الموقع
+    </h2>
+
+    <div class="categories">
+
+        <div class="category">
+            <div class="icon">🧠</div>
+            <h3>تطوير الذات</h3>
+            <p>أفكار وعادات تساعدك على تطوير نفسك.</p>
+            <a href="#">استكشف →</a>
+        </div>
+
+        <div class="category">
+            <div class="icon">💰</div>
+            <h3>المال والأعمال</h3>
+            <p>أفكار حول المال والعمل والمشاريع.</p>
+            <a href="#">استكشف →</a>
+        </div>
+
+        <div class="category">
+            <div class="icon">📚</div>
+            <h3>الكتب والملخصات</h3>
+            <p>ملخصات وأفكار من الكتب المفيدة.</p>
+            <a href="#">استكشف →</a>
+        </div>
+
+        <div class="category">
+            <div class="icon">📄</div>
+            <h3>مكتبة PDF</h3>
+            <p>مجموعة من الملفات والكتب المفيدة.</p>
+            <a href="#pdf">استكشف →</a>
+        </div>
+
+        <div class="category">
+            <div class="icon">🎓</div>
+            <h3>الدراسة والتعلم</h3>
+            <p>طرق وأفكار تساعدك على التعلم.</p>
+            <a href="#">استكشف →</a>
+        </div>
+
+        <div class="category">
+            <div class="icon">💡</div>
+            <h3>نصائح وأفكار</h3>
+            <p>نصائح بسيطة ومفيدة للحياة اليومية.</p>
+            <a href="#">استكشف →</a>
+        </div>
+
+        <div class="category">
+            <div class="icon">🧘</div>
+            <h3>الصحة والعادات</h3>
+            <p>عادات يومية وأفكار لحياة أفضل.</p>
+            <a href="#">استكشف →</a>
+        </div>
+
+        <div class="category">
+            <div class="icon">🚀</div>
+            <h3>النجاح والتحفيز</h3>
+            <p>أفكار تحفيزية لبناء عقلية قوية.</p>
+            <a href="#">استكشف →</a>
+        </div>
+
+        <div class="category">
+            <div class="icon">💻</div>
+            <h3>التكنولوجيا والذكاء الاصطناعي</h3>
+            <p>آخر الأفكار والأدوات التقنية.</p>
+            <a href="#">استكشف →</a>
+        </div>
+
+        <div class="category">
+            <div class="icon">📰</div>
+            <h3>المقالات</h3>
+            <p>مقالات متنوعة ومفيدة.</p>
+            <a href="#articles">استكشف →</a>
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>📝 المقالات</h2>
-        <p>مقالات مفيدة ومتنوعة.</p>
-        <a href="#" class="button">قراءة المقالات</a>
+</section>
+
+
+<!-- المقالات -->
+<section class="container" id="articles">
+
+    <h2 class="section-title">
+        📝 أحدث المقالات
+    </h2>
+
+    <div class="articles">
+
+        <div class="article">
+            <span>تطوير الذات</span>
+            <h3>كيف تطور نفسك كل يوم؟</h3>
+            <p>
+                خطوات بسيطة تساعدك على بناء عادات إيجابية وتطوير حياتك.
+            </p>
+            <a href="#">اقرأ المقال →</a>
+        </div>
+
+        <div class="article">
+            <span>النجاح</span>
+            <h3>كيف تبني عقلية النجاح؟</h3>
+            <p>
+                أفكار تساعدك على تغيير طريقة تفكيرك والتقدم نحو أهدافك.
+            </p>
+            <a href="#">اقرأ المقال →</a>
+        </div>
+
+        <div class="article">
+            <span>المال</span>
+            <h3>كيف تبدأ في تنظيم أموالك؟</h3>
+            <p>
+                مبادئ بسيطة تساعدك على فهم وإدارة أموالك بشكل أفضل.
+            </p>
+            <a href="#">اقرأ المقال →</a>
+        </div>
+
     </div>
 
-</main>
+</section>
 
-<footer>
-    جميع الحقوق محفوظة © 2026
+
+<!-- مكتبة PDF -->
+<section class="pdf-section" id="pdf">
+
+    <h2 class="section-title">
+        📄 مكتبة PDF
+    </h2>
+
+    <div class="pdf-boxes">
+
+        <div class="pdf-card">
+            <div class="pdf-icon">📕</div>
+            <h3>دليل تطوير الذات</h3>
+            <p>
+                ملف PDF مفيد لتطوير العادات والمهارات.
+            </p>
+
+            <!-- من بعد نبدلو # برابط PDF الحقيقي -->
+            <a href="#" class="pdf-button">
+                قراءة PDF
+            </a>
+        </div>
+
+        <div class="pdf-card">
+            <div class="pdf-icon">📘</div>
+            <h3>دليل النجاح</h3>
+            <p>
+                مجموعة أفكار تساعدك على بناء عقلية قوية.
+            </p>
+
+            <a href="#" class="pdf-button">
+                قراءة PDF
+            </a>
+        </div>
+
+        <div class="pdf-card">
+            <div class="pdf-icon">📗</div>
+            <h3>دليل الدراسة</h3>
+            <p>
+                طرق وأفكار لتنظيم الدراسة والتعلم.
+            </p>
+
+            <a href="#" class="pdf-button">
+                قراءة PDF
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- الأكثر قراءة -->
+<section class="container" id="popular">
+
+    <h2 class="section-title">
+        🔥 الأكثر قراءة
+    </h2>
+
+    <div class="popular">
+
+        <div class="popular-card">
+            <h3>كيف تغير حياتك في 30 يوماً؟</h3>
+            <p>تطوير الذات • قراءة ممتعة</p>
+        </div>
+
+        <div class="popular-card">
+            <h3>10 عادات للأشخاص الناجحين</h3>
+            <p>نجاح • تطوير الذات</p>
+        </div>
+
+        <div class="popular-card">
+            <h3>كيف تتعلم مهارة جديدة؟</h3>
+            <p>تعلم • مهارات</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- النشرة البريدية -->
+<section class="container">
+
+    <div class="newsletter">
+
+        <h2>📩 اشترك معنا</h2>
+
+        <p>
+            توصل بالجديد من المقالات وملفات PDF.
+        </p>
+
+        <input
+            type="email"
+            placeholder="أدخل بريدك الإلكتروني"
+        >
+
+        <button>
+            اشتراك
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- التواصل -->
+<footer id="contact">
+
+    <h2>🧠 عقلية النخبة</h2>
+
+    <p>
+        طوّر عقلك، طوّر حياتك.
+    </p>
+
+    <br>
+
+    <div>
+        <a href="#">عن الموقع</a>
+        <a href="#">تواصل معنا</a>
+        <a href="#">سياسة الخصوصية</a>
+        <a href="#">إخلاء المسؤولية</a>
+    </div>
+
+    <p>
+        © 2026 عقلية النخبة - جميع الحقوق محفوظة
+    </p>
+
 </footer>
 
 </body>
 </html>
+```
+
